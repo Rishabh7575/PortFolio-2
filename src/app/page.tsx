@@ -6,6 +6,7 @@ import { Projects } from "@/components/sections/projects";
 import { Experience } from "@/components/sections/experience";
 import { Clubs } from "@/components/sections/clubs";
 import { Certifications } from "@/components/sections/certifications";
+import { ResumeViewer } from "@/components/sections/resume";
 import { Contact } from "@/components/sections/contact";
 import { Outro } from "@/components/sections/outro";
 
@@ -28,6 +29,7 @@ export default function Home() {
         <Experience />
         <Clubs />
         <Certifications />
+        <ResumeViewer />
         <Contact />
       </main>
       
