@@ -66,6 +66,15 @@ export function AICoreOrb() {
   // Ambient pulse lighting gets softer
   const glowScale = useTransform(scrollY, [0, 600], [1.15, 0.95]);
 
+  // Unified bubble translations mapped to scroll depth for organic parallax layering
+  const bubble1Y = useTransform(scrollY, [0, 1000], [150, -120]);
+  const bubble2Y = useTransform(scrollY, [0, 1000], [250, -180]);
+  const bubble3Y = useTransform(scrollY, [0, 1000], [350, -220]);
+  const bubble4Y = useTransform(scrollY, [0, 1000], [450, -260]);
+
+  // Bubbles slowly fade in from 0% to a highly refined 7% / 10% opacity as the Orb shrinks
+  const bubbleOpacity = useTransform(scrollY, [0, 450], [0, 1]);
+
   if (!isMounted) {
     return null; // Prevent hydration mismatches
   }
@@ -75,6 +84,34 @@ export function AICoreOrb() {
       className="fixed inset-0 pointer-events-none flex items-center justify-center overflow-hidden"
       style={{ zIndex: 1 }} // Explicit z-index 1 to guarantee it sits in front of body background but behind main (z-10)
     >
+      {/* Premium Cinematic Background Bubbles that float into view on scroll */}
+      <motion.div
+        style={{ opacity: bubbleOpacity }}
+        className="absolute inset-0 pointer-events-none overflow-hidden"
+      >
+        {/* Soft Pink Bubble */}
+        <motion.div
+          style={{ y: bubble1Y }}
+          className="absolute top-[18%] left-[12%] w-[260px] h-[260px] rounded-full bg-pink-400/8 dark:bg-pink-400/5 blur-[80px] mix-blend-screen"
+        />
+        {/* Soft Blue Bubble */}
+        <motion.div
+          style={{ y: bubble2Y }}
+          className="absolute top-[45%] right-[8%] w-[340px] h-[340px] rounded-full bg-blue-400/8 dark:bg-blue-400/5 blur-[100px] mix-blend-screen"
+        />
+        {/* Soft Cyan Bubble */}
+        <motion.div
+          style={{ y: bubble3Y }}
+          className="absolute top-[72%] left-[18%] w-[280px] h-[280px] rounded-full bg-cyan-400/8 dark:bg-cyan-400/5 blur-[90px] mix-blend-screen"
+        />
+        {/* Soft Pinkish-Purple Bubble */}
+        <motion.div
+          style={{ y: bubble4Y }}
+          className="absolute top-[38%] left-[58%] w-[240px] h-[240px] rounded-full bg-pink-300/8 dark:bg-pink-300/4 blur-[75px] mix-blend-screen"
+        />
+      </motion.div>
+
+      {/* Main Watermark Orb */}
       <motion.div
         style={{
           x,
