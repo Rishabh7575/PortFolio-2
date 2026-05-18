@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import React, { useState, useEffect } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useTheme } from "next-themes";
 import { Settings } from "lucide-react";
 
@@ -24,23 +24,43 @@ export function AICoreOrb() {
     return () => window.removeEventListener("resize", checkScreen);
   }, []);
 
-  // Responsive transformation formulas
-  const scaleDesktop = useTransform(scrollY, [0, 650], [1.0, 0.58]);
-  const scaleMobile = useTransform(scrollY, [0, 650], [0.82, 0.44]);
-  const scale = isLargeScreen ? scaleDesktop : scaleMobile;
+  // Single, unified transforms using functional callbacks to prevent reference-switching issues in Framer Motion
+  const scale = useTransform(scrollY, (latest) => {
+    const ratio = Math.min(Math.max(latest / 650, 0), 1);
+    if (isLargeScreen) {
+      return 1.0 - ratio * (1.0 - 0.58);
+    } else {
+      return 0.82 - ratio * (0.82 - 0.44);
+    }
+  });
 
-  const opacityDark = useTransform(scrollY, [0, 650], [1.0, 0.22]);
-  const opacityLight = useTransform(scrollY, [0, 650], [0.9, 0.14]);
-  const opacity = theme === "light" ? opacityLight : opacityDark;
+  const opacity = useTransform(scrollY, (latest) => {
+    const ratio = Math.min(Math.max(latest / 650, 0), 1);
+    const currentTheme = theme || "dark";
+    if (currentTheme === "light") {
+      return 0.9 - ratio * (0.9 - 0.14); // Light mode range (softer)
+    } else {
+      return 1.0 - ratio * (1.0 - 0.22); // Dark mode range (glowing)
+    }
+  });
 
-  const xDesktop = useTransform(scrollY, [0, 650], ["22vw", "0vw"]);
-  const xMobile = useTransform(scrollY, [0, 650], ["0vw", "0vw"]);
-  const x = isLargeScreen ? xDesktop : xMobile;
+  const x = useTransform(scrollY, (latest) => {
+    const ratio = Math.min(Math.max(latest / 650, 0), 1);
+    if (isLargeScreen) {
+      // Slides smoothly from 22vw (Hero right column alignment) to 0vw (Center watermark)
+      return `${22 - ratio * 22}vw`;
+    } else {
+      return "0vw";
+    }
+  });
 
-  // Move down slightly while scrolling to stay centered behind the body
-  const yVal = useTransform(scrollY, [0, 650], ["0px", "40px"]);
+  // Moves down slightly while scrolling to stay vertically centered behind sections
+  const y = useTransform(scrollY, (latest) => {
+    const ratio = Math.min(Math.max(latest / 650, 0), 1);
+    return `${ratio * 40}px`;
+  });
 
-  // Core energy arcs fade away on scroll
+  // Core energy arcs fade away as you scroll down
   const energyOpacity = useTransform(scrollY, [0, 600], [0.8, 0.15]);
   
   // Ambient pulse lighting gets softer
@@ -51,11 +71,14 @@ export function AICoreOrb() {
   }
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-0 flex items-center justify-center overflow-hidden">
+    <div 
+      className="fixed inset-0 pointer-events-none flex items-center justify-center overflow-hidden"
+      style={{ zIndex: 1 }} // Explicit z-index 1 to guarantee it sits in front of body background but behind main (z-10)
+    >
       <motion.div
         style={{
           x,
-          y: yVal,
+          y,
           scale,
           opacity,
         }}

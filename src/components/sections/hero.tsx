@@ -30,7 +30,7 @@ export function Hero() {
     <Section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-24 lg:pt-0">
       
       {/* Immersive Theme-Adaptive Ambient Orbs */}
-      <div className="absolute inset-0 pointer-events-none -z-20 overflow-hidden bg-background">
+      <div className="absolute inset-0 pointer-events-none -z-20 overflow-hidden">
         
         {/* Soft Purple Glow Orb */}
         <motion.div 
