@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { NavDock } from "@/components/layout/nav-dock";
-import { AstronautSystem } from "@/components/layout/astronaut-system";
 import { IntroSequence } from "@/components/layout/intro-sequence";
 import "./globals.css";
 
@@ -38,7 +37,6 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <IntroSequence />
-          <AstronautSystem />
           <NavDock />
           {children}
         </ThemeProvider>
