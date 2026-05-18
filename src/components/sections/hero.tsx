@@ -38,10 +38,27 @@ export function Hero() {
       
       {/* Cinematic Ambient Background */}
       <div className="absolute inset-0 pointer-events-none -z-20 overflow-hidden">
+        {/* Primary Glow */}
         <motion.div 
-          animate={{ scale: [1, 1.05, 1], opacity: [0.5, 0.7, 0.5] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[150px] mix-blend-screen" 
+          animate={{ 
+            scale: [1, 1.1, 1], 
+            opacity: [0.4, 0.6, 0.4],
+            x: [0, 20, 0],
+            y: [0, -20, 0]
+          }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-1/4 left-1/3 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[140px] mix-blend-screen" 
+        />
+        {/* Secondary Shifting Blue/Cyan Glow */}
+        <motion.div 
+          animate={{ 
+            scale: [1, 1.15, 1], 
+            opacity: [0.3, 0.5, 0.3],
+            x: [0, -30, 0],
+            y: [0, 30, 0]
+          }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          className="absolute top-1/3 right-1/4 w-[450px] h-[450px] bg-blue-500/10 rounded-full blur-[140px] mix-blend-screen" 
         />
       </div>
 
@@ -53,14 +70,15 @@ export function Hero() {
         onMouseMove={handleMouseMove}
         className="group relative z-10 px-8 py-16 md:px-16 md:py-20 rounded-[2.5rem] border border-white/5 shadow-[0_8px_32px_rgba(0,0,0,0.12)] flex flex-col items-center text-center max-w-4xl w-full hover:border-primary/20 transition-colors duration-700 bg-background/40 backdrop-blur-xl overflow-hidden"
       >
-        {/* Hover Spotlight Glow */}
+        {/* Hover Spotlight Dynamic Dual-Glow */}
         <motion.div
           className="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition duration-300 group-hover:opacity-100"
           style={{
             background: useMotionTemplate`
               radial-gradient(
                 650px circle at ${mouseX}px ${mouseY}px,
-                rgba(var(--primary), 0.1),
+                rgba(var(--primary), 0.12),
+                rgba(59, 130, 246, 0.06) 40%,
                 transparent 80%
               )
             `,

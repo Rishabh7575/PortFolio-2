@@ -59,7 +59,7 @@ export function NavDock() {
               </div>
 
               {/* Tooltip */}
-              <div className="absolute right-full mr-4 top-1/2 -translate-y-1/2 px-3 py-1.5 rounded-lg bg-foreground text-background text-sm font-semibold opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity whitespace-nowrap shadow-xl">
+              <div className="absolute right-full mr-4 top-1/2 -translate-y-1/2 px-3 py-1.5 rounded-lg glass text-foreground text-[10px] font-bold tracking-widest uppercase opacity-0 group-hover:opacity-100 scale-90 group-hover:scale-100 pointer-events-none transition-all duration-300 whitespace-nowrap shadow-2xl border-white/10 font-mono">
                 {item.title}
               </div>
             </Link>
@@ -67,7 +67,7 @@ export function NavDock() {
         })}
       </nav>
       
-      <div className="glass p-2 rounded-full border-white/10 shadow-xl">
+      <div className="glass p-2 rounded-full border-white/10 shadow-xl hover:scale-110 transition-transform duration-300">
         <ThemeToggle />
       </div>
     </motion.div>
