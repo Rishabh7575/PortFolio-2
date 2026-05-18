@@ -6,18 +6,18 @@ import { Section } from "@/components/layout/section";
 
 const experienceData = [
   {
-    role: "Full-Stack Engineer Intern",
-    company: "Tech Innovations Inc.",
-    period: "June 2025 - Present",
-    description: "Architected and deployed a highly scalable microservices backend using FastAPI and Docker. Improved search retrieval latency by 40% via optimized FAISS index integration. Built the modern React frontend.",
-    skills: ["React", "FastAPI", "Docker", "Python"],
+    role: "AI & Data Systems Architect (Project Lead)",
+    company: "University Software Lab",
+    period: "2025 - Present",
+    description: "Led the development of a production-ready SHL AI Recommendation Engine. Scaled the backend architecture using FastAPI and optimized memory footprint by integrating a hybrid FAISS and Keyword-retrieval pipeline. Cut response latency significantly for concurrent inference requests.",
+    skills: ["FastAPI", "FAISS", "Python", "System Design"],
   },
   {
-    role: "AI Systems Developer",
-    company: "University Research Lab",
-    period: "Jan 2025 - May 2025",
-    description: "Developed an AI-powered data engine that processes and cleans large datasets automatically. Implemented RAG (Retrieval-Augmented Generation) pipelines for internal tooling.",
-    skills: ["Python", "LangChain", "OpenAI", "PostgreSQL"],
+    role: "Full-Stack Software Engineer Intern",
+    company: "Tech Innovations",
+    period: "2024 - 2025",
+    description: "Architected modern headless e-commerce solutions and data pipelines. Engineered complex React frontend state management with Zustand and Context API, while migrating legacy REST endpoints to highly structured Pydantic and Kafka-driven data streams.",
+    skills: ["React", "Next.js", "Kafka", "PostgreSQL"],
   },
 ];
 
