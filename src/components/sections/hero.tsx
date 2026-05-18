@@ -1,22 +1,30 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useMotionTemplate, useMotionValue } from "framer-motion";
 import { Section } from "@/components/layout/section";
 import { MagneticButton } from "@/components/ui/magnetic-button";
-import { ArrowRight, Download } from "lucide-react";
+import { ArrowRight, Download, Github } from "lucide-react";
 import { siteConfig } from "@/config/site";
 import { staggerContainer, fadeUp } from "@/animations/variants";
+import Link from "next/link";
 
 const roles = [
-  "AI Systems Builder",
+  "AI Systems Architect",
   "Full-Stack Engineer",
-  "Frontend Specialist",
-  "UI/UX Enthusiast",
+  "Data Pipeline Builder",
 ];
 
 export function Hero() {
   const [roleIndex, setRoleIndex] = useState(0);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  function handleMouseMove({ currentTarget, clientX, clientY }: React.MouseEvent) {
+    const { left, top } = currentTarget.getBoundingClientRect();
+    mouseX.set(clientX - left);
+    mouseY.set(clientY - top);
+  }
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -37,16 +45,31 @@ export function Hero() {
         />
       </div>
 
-      {/* Central Identity Card */}
+      {/* Central Identity Card with Spotlight */}
       <motion.div 
         variants={staggerContainer}
         initial="hidden"
         animate="visible"
-        className="relative z-10 glass px-8 py-16 md:px-16 md:py-20 rounded-[2.5rem] border border-white/5 shadow-2xl flex flex-col items-center text-center max-w-4xl w-full hover:border-primary/20 transition-colors duration-700 bg-background/40 backdrop-blur-xl"
+        onMouseMove={handleMouseMove}
+        className="group relative z-10 px-8 py-16 md:px-16 md:py-20 rounded-[2.5rem] border border-white/5 shadow-[0_8px_32px_rgba(0,0,0,0.12)] flex flex-col items-center text-center max-w-4xl w-full hover:border-primary/20 transition-colors duration-700 bg-background/40 backdrop-blur-xl overflow-hidden"
       >
+        {/* Hover Spotlight Glow */}
+        <motion.div
+          className="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition duration-300 group-hover:opacity-100"
+          style={{
+            background: useMotionTemplate`
+              radial-gradient(
+                650px circle at ${mouseX}px ${mouseY}px,
+                rgba(var(--primary), 0.1),
+                transparent 80%
+              )
+            `,
+          }}
+        />
+
         <motion.div 
           variants={fadeUp}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-foreground/5 mb-8 border border-white/5 shadow-sm"
+          className="relative inline-flex items-center gap-2 px-4 py-2 rounded-full bg-foreground/5 mb-8 border border-white/5 shadow-sm"
         >
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
@@ -57,11 +80,11 @@ export function Hero() {
           </span>
         </motion.div>
 
-        <motion.h1 variants={fadeUp} className="text-5xl md:text-7xl font-extrabold tracking-tighter text-foreground leading-[1.1] mb-6">
+        <motion.h1 variants={fadeUp} className="relative text-5xl md:text-7xl font-extrabold tracking-tighter text-foreground leading-[1.1] mb-6">
           Hi, I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-500 drop-shadow-sm">{siteConfig.name}</span>
         </motion.h1>
         
-        <motion.div variants={fadeUp} className="h-12 md:h-16 overflow-hidden mb-8">
+        <motion.div variants={fadeUp} className="relative h-12 md:h-16 overflow-hidden mb-8">
           <AnimatePresence mode="wait">
             <motion.div
               key={roleIndex}
@@ -76,20 +99,24 @@ export function Hero() {
           </AnimatePresence>
         </motion.div>
 
-        <motion.p variants={fadeUp} className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-12 leading-relaxed">
+        <motion.p variants={fadeUp} className="relative text-lg md:text-xl text-muted-foreground max-w-2xl mb-12 leading-relaxed">
           Mechanical Engineering student at NIT Patna building scalable full-stack applications, 
           intelligent AI tools, and premium frontend architectures.
         </motion.p>
 
-        <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-6 w-full sm:w-auto">
-          <MagneticButton className="group bg-foreground text-background px-10 py-5 font-bold text-lg flex items-center justify-center gap-2 hover:bg-foreground/90 shadow-xl">
-            View Projects
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </MagneticButton>
-          <MagneticButton className="group glass border-border px-10 py-5 font-bold text-lg flex items-center justify-center gap-2 hover:bg-accent/50 shadow-xl">
-            Resume
-            <Download className="w-5 h-5 group-hover:-translate-y-1 transition-transform" />
-          </MagneticButton>
+        <motion.div variants={fadeUp} className="relative flex flex-col sm:flex-row gap-6 w-full sm:w-auto">
+          <Link href={siteConfig.links.github} target="_blank">
+            <MagneticButton className="group bg-foreground text-background px-10 py-5 font-bold text-lg flex items-center justify-center gap-2 hover:bg-foreground/90 shadow-xl w-full sm:w-auto">
+              <Github className="w-5 h-5 group-hover:-translate-y-1 transition-transform" />
+              GitHub
+            </MagneticButton>
+          </Link>
+          <Link href="/resume.pdf" target="_blank">
+            <MagneticButton className="group glass border-white/10 px-10 py-5 font-bold text-lg flex items-center justify-center gap-2 hover:bg-white/5 hover:border-primary/30 transition-all duration-300 shadow-xl w-full sm:w-auto">
+              Resume
+              <Download className="w-5 h-5 group-hover:-translate-y-1 transition-transform" />
+            </MagneticButton>
+          </Link>
         </motion.div>
       </motion.div>
     </Section>
