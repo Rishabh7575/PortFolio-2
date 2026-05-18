@@ -1,12 +1,11 @@
 import { Navbar } from "@/components/layout/navbar";
 import { Hero } from "@/components/sections/hero";
-import { About } from "@/components/sections/about";
+import { ResumeViewer } from "@/components/sections/resume";
 import { Skills } from "@/components/sections/skills";
 import { Projects } from "@/components/sections/projects";
 import { Experience } from "@/components/sections/experience";
 import { Clubs } from "@/components/sections/clubs";
 import { Certifications } from "@/components/sections/certifications";
-import { ResumeViewer } from "@/components/sections/resume";
 import { Contact } from "@/components/sections/contact";
 import { Outro } from "@/components/sections/outro";
 import { AICoreOrb } from "@/components/ui/ai-core-orb";
@@ -27,13 +26,12 @@ export default function Home() {
 
       <main className="flex-1 flex flex-col w-full max-w-7xl mx-auto px-4 md:px-8 relative z-10 pb-20">
         <Hero />
-        <About />
+        <ResumeViewer />
         <Skills />
         <Projects />
         <Experience />
         <Clubs />
         <Certifications />
-        <ResumeViewer />
         <Contact />
       </main>
       

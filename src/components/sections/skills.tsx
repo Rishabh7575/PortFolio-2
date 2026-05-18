@@ -149,44 +149,51 @@ export function Skills() {
             </motion.div>
           ))}
 
-          {/* GitHub Activity Bento Panel */}
+          {/* LeetCode Activity Bento Panel */}
           <motion.div variants={staggerFadeUp} className="col-span-1 md:col-span-2 lg:col-span-3 h-full">
             <TiltCard intensity={2} className="h-full">
               <div className="group relative glass p-8 rounded-3xl border border-white/5 hover:border-primary/30 transition-all duration-500 overflow-hidden bg-background/40 backdrop-blur-md">
                 <div className="relative z-10 flex flex-col lg:flex-row gap-8 justify-between">
                   <div className="flex flex-col max-w-sm">
                     <div className="flex items-center gap-4 mb-4">
-                      <div className="p-3 bg-primary/10 rounded-2xl border border-primary/20 shadow-inner">
-                        <GitBranch className="w-6 h-6 text-primary animate-pulse" />
+                      <div className="p-2.5 bg-orange-500/10 rounded-2xl border border-orange-500/20 shadow-inner flex items-center justify-center">
+                        {/* Elegant Custom LeetCode Icon SVG */}
+                        <svg viewBox="0 0 24 24" className="w-6 h-6 fill-orange-500" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M16.102 17.93l-2.697 2.607c-.466.45-1.245.45-1.71 0l-5.865-5.665a1.162 1.162 0 010-1.654L10.996 9.07c.466-.45 1.245-.45 1.71 0l5.865 5.665a1.162 1.162 0 010 1.654l-2.469 2.387v.002z" opacity=".15"/>
+                          <path d="M22 14.355c0-.742-.604-1.346-1.346-1.346H10.607c-.36 0-.702-.143-.956-.397l-3.957-3.957a1.352 1.352 0 010-1.91l3.957-3.957c.254-.254.596-.397.956-.397h10.047C21.396 2.397 22 1.793 22 1.051c0-.742-.604-1.346-1.346-1.346H10.607c-1.08 0-2.115.43-2.878 1.193L3.772 4.855a4.053 4.053 0 000 5.73l3.957 3.957c.763.763 1.798 1.193 2.878 1.193h10.047c.742 0 1.346-.604 1.346-1.346z"/>
+                          <path d="M16.102 17.93l-2.697 2.607c-.466.45-1.245.45-1.71 0l-5.865-5.665a1.162 1.162 0 010-1.654L10.996 9.07c.466-.45 1.245-.45 1.71 0l5.865 5.665a1.162 1.162 0 010 1.654l-2.469 2.387v.002z" fill="#f97316"/>
+                        </svg>
                       </div>
-                      <h3 className="text-2xl font-bold text-foreground tracking-tight">GitHub Pulse</h3>
+                      <h3 className="text-2xl font-bold text-foreground tracking-tight">LeetCode Snapshot</h3>
                     </div>
                     <p className="text-sm text-muted-foreground font-mono leading-relaxed mb-6 uppercase tracking-wider">
-                      // Active tracking of coding focus indices and commit distribution.
+                      // Active tracking of algorithm patterns, data structures, and problem-solving velocity.
                     </p>
                     
                     <div className="flex flex-col gap-3 font-mono text-xs">
                       <div className="flex justify-between border-b border-white/5 py-2">
-                        <span className="text-muted-foreground">AI / Semantic Code</span>
-                        <span className="font-bold text-primary">45%</span>
+                        <span className="text-muted-foreground">Medium Complexity</span>
+                        <span className="font-bold text-orange-500">195 Solved</span>
                       </div>
                       <div className="flex justify-between border-b border-white/5 py-2">
-                        <span className="text-muted-foreground">Systems & Micro-Busses</span>
-                        <span className="font-bold text-blue-400">35%</span>
+                        <span className="text-muted-foreground">Easy Foundation</span>
+                        <span className="font-bold text-yellow-500">120 Solved</span>
                       </div>
                       <div className="flex justify-between py-2">
-                        <span className="text-muted-foreground">Heads-Up Display UI</span>
-                        <span className="font-bold text-foreground">20%</span>
+                        <span className="text-muted-foreground">Hard Algorithms</span>
+                        <span className="font-bold text-red-500">35 Solved</span>
                       </div>
                     </div>
                   </div>
 
-                  {/* Contribution Heatmap Mock */}
+                  {/* LeetCode Amber/Orange Heatmap representation */}
                   <div className="flex-1 flex flex-col justify-center items-center lg:items-end">
-                    <div className="glass border-white/10 p-6 rounded-2xl font-mono text-xs max-w-full overflow-hidden shadow-2xl bg-[#0a0a0c]/80">
+                    <div className="glass border-white/10 p-6 rounded-2xl font-mono text-xs max-w-full overflow-hidden shadow-2xl bg-[#0a0a0c]/80 relative">
+                      <div className="absolute top-0 right-0 w-24 h-24 bg-orange-500/5 rounded-full blur-2xl pointer-events-none" />
+                      
                       <div className="text-muted-foreground mb-4 text-[10px] uppercase tracking-wider flex justify-between gap-4">
-                        <span>CONTRIBUTIONS (PAST YEAR)</span>
-                        <span className="text-primary font-bold">1,824 COMMITS</span>
+                        <span>LEETCODE ACTIVITY</span>
+                        <span className="text-orange-500 font-bold">350+ SOLVED (RATING: 1750)</span>
                       </div>
                       
                       {/* Grid representation */}
@@ -194,19 +201,19 @@ export function Skills() {
                         {[...Array(24)].map((_, colIdx) => (
                           <div key={colIdx} className="flex flex-col gap-1.5 flex-shrink-0">
                             {[...Array(7)].map((_, rowIdx) => {
-                              // Pseudo-random greens
-                              const val = (colIdx * rowIdx + 3) % 4;
+                              // Patterned orange heat distribution
+                              const val = (colIdx * rowIdx + 2) % 4;
                               const colors = [
-                                "bg-white/5",
-                                "bg-primary/20",
-                                "bg-primary/50",
-                                "bg-primary"
+                                "bg-white/5 dark:bg-white/5",
+                                "bg-orange-500/20 dark:bg-orange-500/15",
+                                "bg-orange-500/60 dark:bg-orange-500/40",
+                                "bg-orange-500 dark:bg-orange-500"
                               ];
                               return (
                                 <div 
                                   key={rowIdx} 
-                                  className={`w-3.5 h-3.5 rounded ${colors[val]} hover:scale-125 hover:ring-2 hover:ring-primary/45 transition-all duration-300 cursor-help`}
-                                  title={`${val * 2 + 1} commit(s) on cycle [${colIdx}-${rowIdx}]`}
+                                  className={`w-3.5 h-3.5 rounded-sm ${colors[val]} hover:scale-125 hover:ring-2 hover:ring-orange-500/45 transition-all duration-300 cursor-help`}
+                                  title={`${val * 2 + 1} problems solved on slot [${colIdx}-${rowIdx}]`}
                                 />
                               );
                             })}

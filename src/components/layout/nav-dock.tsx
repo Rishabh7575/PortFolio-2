@@ -7,11 +7,11 @@ import { siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { Home, User, Code2, Briefcase, GraduationCap, Award, Mail, Blocks } from "lucide-react";
+import { Home, FileText, Code2, Briefcase, GraduationCap, Award, Mail, Blocks } from "lucide-react";
 
 const navIcons: Record<string, React.ReactNode> = {
   home: <Home className="w-5 h-5" />,
-  about: <User className="w-5 h-5" />,
+  resume: <FileText className="w-5 h-5" />,
   skills: <Code2 className="w-5 h-5" />,
   projects: <Blocks className="w-5 h-5" />,
   experience: <Briefcase className="w-5 h-5" />,
