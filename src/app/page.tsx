@@ -9,6 +9,7 @@ import { Certifications } from "@/components/sections/certifications";
 import { ResumeViewer } from "@/components/sections/resume";
 import { Contact } from "@/components/sections/contact";
 import { Outro } from "@/components/sections/outro";
+import { AICoreOrb } from "@/components/ui/ai-core-orb";
 
 export default function Home() {
   return (
@@ -16,12 +17,15 @@ export default function Home() {
       {/* Cinematic Noise Overlay */}
       <div className="fixed inset-0 pointer-events-none z-50 noise-bg" />
 
+      {/* Floating Background AI Core Orb Watermark System */}
+      <AICoreOrb />
+
       {/* Top Navbar specifically tailored for Mobile (NavDock handles Desktop) */}
       <div className="lg:hidden">
         <Navbar />
       </div>
 
-      <main className="flex-1 flex flex-col w-full max-w-7xl mx-auto px-4 md:px-8 relative pb-20">
+      <main className="flex-1 flex flex-col w-full max-w-7xl mx-auto px-4 md:px-8 relative z-10 pb-20">
         <Hero />
         <About />
         <Skills />
@@ -33,7 +37,9 @@ export default function Home() {
         <Contact />
       </main>
       
-      <Outro />
+      <div className="relative z-10">
+        <Outro />
+      </div>
     </>
   );
 }
