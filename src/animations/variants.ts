@@ -4,9 +4,9 @@ import { Variants } from "framer-motion";
  * Premium custom easing curves inspired by Apple and Linear
  */
 export const easings = {
-  smooth: [0.22, 1, 0.36, 1], // very smooth, slow ending
-  snappy: [0.175, 0.885, 0.32, 1.1], // slight overshoot, not exaggerated
-  calm: [0.33, 1, 0.68, 1], // CSS ease-out equivalent but tailored
+  smooth: [0.22, 1, 0.36, 1] as [number, number, number, number], // very smooth, slow ending
+  snappy: [0.175, 0.885, 0.32, 1.1] as [number, number, number, number], // slight overshoot, not exaggerated
+  calm: [0.33, 1, 0.68, 1] as [number, number, number, number], // CSS ease-out equivalent but tailored
 };
 
 export const fadeUp: Variants = {

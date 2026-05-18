@@ -11,15 +11,6 @@ import {
   LayoutTemplate, 
   TerminalSquare, 
   Cpu, 
-  Wrench 
-} from "lucide-react";
-
-import { 
-  Code2, 
-  Database, 
-  LayoutTemplate, 
-  TerminalSquare, 
-  Cpu, 
   Wrench,
   GitBranch
 } from "lucide-react";

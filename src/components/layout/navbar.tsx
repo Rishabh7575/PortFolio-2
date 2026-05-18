@@ -6,6 +6,7 @@ import { Menu, X } from "lucide-react";
 import { siteConfig } from "@/config/site";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { motion, AnimatePresence } from "framer-motion";
+import { Github, Linkedin } from "@/components/ui/icons";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -46,7 +47,7 @@ export function Navbar() {
 
       {/* Mobile Menu Dropdown */}
       <AnimatePresence>
-        {isMobileMenuOpen && (
+        {isOpen && (
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -57,7 +58,7 @@ export function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={() => setIsOpen(false)}
                 className="text-lg font-medium px-4 py-2 rounded-lg hover:bg-accent transition-colors"
               >
                 {item.title}
@@ -65,10 +66,10 @@ export function Navbar() {
             ))}
             <hr className="border-border" />
             <div className="flex items-center gap-4 px-4 py-2">
-              <Link href={siteConfig.links.github} target="_blank">
+              <Link href={siteConfig.links.github} target="_blank" className="hover:text-primary transition-colors">
                 <Github className="w-6 h-6" />
               </Link>
-              <Link href={siteConfig.links.linkedin} target="_blank">
+              <Link href={siteConfig.links.linkedin} target="_blank" className="hover:text-primary transition-colors">
                 <Linkedin className="w-6 h-6" />
               </Link>
               <Link 

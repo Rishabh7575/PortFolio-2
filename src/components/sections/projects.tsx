@@ -5,7 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Section } from "@/components/layout/section";
 import { TiltCard } from "@/components/ui/tilt-card";
 import { staggerContainer, staggerFadeUp } from "@/animations/variants";
-import { Github, ExternalLink, ChevronDown, ChevronUp, Terminal } from "lucide-react";
+import { ExternalLink, ChevronDown, ChevronUp, Terminal } from "lucide-react";
+import { Github } from "@/components/ui/icons";
 import Link from "next/link";
 
 interface Project {

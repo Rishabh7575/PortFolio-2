@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { fadeUp } from "@/animations/variants";
 
-interface SectionProps extends React.HTMLAttributes<HTMLElement> {
+interface SectionProps extends Omit<React.HTMLAttributes<HTMLElement>, "onDrag" | "onDragStart" | "onDragEnd" | "onAnimationStart"> {
   children: React.ReactNode;
   className?: string;
   id?: string;
@@ -19,25 +19,29 @@ export function Section({
   animate = true,
   ...props
 }: SectionProps) {
-  const Component = animate ? motion.section : "section";
-  
-  const animationProps = animate
-    ? {
-        initial: "hidden",
-        whileInView: "visible",
-        viewport: { once: true, margin: "-100px" },
-        variants: fadeUp,
-      }
-    : {};
+  if (animate) {
+    return (
+      <motion.section
+        id={id}
+        className={cn("py-20 lg:py-40 w-full max-w-7xl mx-auto", className)}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={fadeUp}
+        {...props}
+      >
+        {children}
+      </motion.section>
+    );
+  }
 
   return (
-    <Component
+    <section
       id={id}
       className={cn("py-20 lg:py-40 w-full max-w-7xl mx-auto", className)}
-      {...animationProps}
       {...props}
     >
       {children}
-    </Component>
+    </section>
   );
 }

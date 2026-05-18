@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { motion, useTransform, useMotionValue, useSpring } from "framer-motion";
+import { motion, useTransform, useMotionValue, useSpring, AnimatePresence } from "framer-motion";
 import { useMousePosition } from "@/hooks/use-mouse-position";
 
 export function AstronautSystem() {

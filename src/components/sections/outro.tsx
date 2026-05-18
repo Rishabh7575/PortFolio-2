@@ -3,7 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { siteConfig } from "@/config/site";
-import { Github, Linkedin, Twitter } from "lucide-react";
+import { Github, Linkedin, Twitter } from "@/components/ui/icons";
 import Link from "next/link";
 
 export function Outro() {
