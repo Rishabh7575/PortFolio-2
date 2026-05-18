@@ -52,8 +52,8 @@ export function Contact() {
           <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-[80px] -z-10" />
           
           <form className="flex flex-col gap-6">
-            <div className="flex flex-col gap-2">
-              <label htmlFor="name" className="text-sm font-bold text-muted-foreground uppercase tracking-wider">
+            <div className="flex flex-col gap-2 group">
+              <label htmlFor="name" className="text-sm font-bold text-muted-foreground uppercase tracking-wider group-focus-within:text-primary transition-colors">
                 Name
               </label>
               <input 
@@ -61,13 +61,13 @@ export function Contact() {
                 id="name" 
                 onFocus={() => setIsFocused("name")}
                 onBlur={() => setIsFocused(null)}
-                className="w-full bg-foreground/5 border-b-2 border-white/10 px-4 py-4 rounded-t-xl outline-none transition-colors focus:bg-foreground/10 focus:border-primary text-foreground placeholder:text-muted-foreground/50"
+                className="w-full bg-foreground/5 border-b-2 border-white/10 px-4 py-4 rounded-t-xl outline-none transition-all duration-300 focus:bg-foreground/10 focus:border-primary focus:ring-4 focus:ring-primary/10 text-foreground placeholder:text-muted-foreground/50"
                 placeholder="John Doe"
               />
             </div>
             
-            <div className="flex flex-col gap-2">
-              <label htmlFor="email" className="text-sm font-bold text-muted-foreground uppercase tracking-wider">
+            <div className="flex flex-col gap-2 group">
+              <label htmlFor="email" className="text-sm font-bold text-muted-foreground uppercase tracking-wider group-focus-within:text-primary transition-colors">
                 Email
               </label>
               <input 
@@ -75,13 +75,13 @@ export function Contact() {
                 id="email" 
                 onFocus={() => setIsFocused("email")}
                 onBlur={() => setIsFocused(null)}
-                className="w-full bg-foreground/5 border-b-2 border-white/10 px-4 py-4 rounded-t-xl outline-none transition-colors focus:bg-foreground/10 focus:border-primary text-foreground placeholder:text-muted-foreground/50"
+                className="w-full bg-foreground/5 border-b-2 border-white/10 px-4 py-4 rounded-t-xl outline-none transition-all duration-300 focus:bg-foreground/10 focus:border-primary focus:ring-4 focus:ring-primary/10 text-foreground placeholder:text-muted-foreground/50"
                 placeholder="john@example.com"
               />
             </div>
 
-            <div className="flex flex-col gap-2">
-              <label htmlFor="message" className="text-sm font-bold text-muted-foreground uppercase tracking-wider">
+            <div className="flex flex-col gap-2 group">
+              <label htmlFor="message" className="text-sm font-bold text-muted-foreground uppercase tracking-wider group-focus-within:text-primary transition-colors">
                 Message
               </label>
               <textarea 
@@ -89,7 +89,7 @@ export function Contact() {
                 rows={4}
                 onFocus={() => setIsFocused("message")}
                 onBlur={() => setIsFocused(null)}
-                className="w-full bg-foreground/5 border-b-2 border-white/10 px-4 py-4 rounded-t-xl outline-none transition-colors focus:bg-foreground/10 focus:border-primary text-foreground placeholder:text-muted-foreground/50 resize-none"
+                className="w-full bg-foreground/5 border-b-2 border-white/10 px-4 py-4 rounded-t-xl outline-none transition-all duration-300 focus:bg-foreground/10 focus:border-primary focus:ring-4 focus:ring-primary/10 text-foreground placeholder:text-muted-foreground/50 resize-none"
                 placeholder="Tell me about your project..."
               />
             </div>

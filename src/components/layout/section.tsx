@@ -33,7 +33,7 @@ export function Section({
   return (
     <Component
       id={id}
-      className={cn("py-20 md:py-32 w-full max-w-7xl mx-auto px-4 md:px-8", className)}
+      className={cn("py-20 lg:py-40 w-full max-w-7xl mx-auto", className)}
       {...animationProps}
       {...props}
     >

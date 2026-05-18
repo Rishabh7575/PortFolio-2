@@ -3,6 +3,8 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Section } from "@/components/layout/section";
+import { TiltCard } from "@/components/ui/tilt-card";
+import { staggerContainer, staggerFadeUp } from "@/animations/variants";
 import { 
   Code2, 
   Database, 
@@ -58,41 +60,44 @@ export function Skills() {
           </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {skillCategories.map((category, idx) => (
-            <motion.div
-              key={category.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="group relative glass p-8 rounded-3xl border border-white/5 hover:border-primary/30 transition-all duration-500 overflow-hidden flex flex-col h-full"
-            >
-              {/* Subtle hover gradient */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              
-              <div className="relative z-10 flex flex-col h-full">
-                <div className="flex items-center gap-4 mb-8">
-                  <div className="p-3 bg-primary/10 rounded-2xl border border-primary/20">
-                    {category.icon}
+        <motion.div 
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
+          {skillCategories.map((category) => (
+            <motion.div key={category.title} variants={staggerFadeUp} className="h-full">
+              <TiltCard intensity={10} className="h-full">
+                <div className="group relative glass p-8 rounded-3xl border border-white/5 hover:border-primary/30 transition-all duration-500 overflow-hidden flex flex-col h-full bg-background/40 backdrop-blur-md">
+                  {/* Subtle hover gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  
+                  <div className="relative z-10 flex flex-col h-full">
+                    <div className="flex items-center gap-4 mb-8">
+                      <div className="p-3 bg-primary/10 rounded-2xl border border-primary/20 shadow-inner">
+                        {category.icon}
+                      </div>
+                      <h3 className="text-2xl font-bold text-foreground tracking-tight">{category.title}</h3>
+                    </div>
+                    
+                    <div className="flex flex-wrap gap-2 mt-auto">
+                      {category.skills.map((skill) => (
+                        <span 
+                          key={skill}
+                          className="px-4 py-2 bg-foreground/5 hover:bg-foreground/10 border border-white/5 rounded-full text-sm font-medium transition-colors cursor-default shadow-sm"
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                  <h3 className="text-2xl font-bold text-foreground tracking-tight">{category.title}</h3>
                 </div>
-                
-                <div className="flex flex-wrap gap-2 mt-auto">
-                  {category.skills.map((skill) => (
-                    <span 
-                      key={skill}
-                      className="px-4 py-2 bg-foreground/5 hover:bg-foreground/10 border border-white/5 rounded-full text-sm font-medium transition-colors cursor-default"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </div>
+              </TiltCard>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </Section>
   );

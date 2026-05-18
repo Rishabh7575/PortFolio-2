@@ -12,6 +12,9 @@ import { Outro } from "@/components/sections/outro";
 export default function Home() {
   return (
     <>
+      {/* Cinematic Noise Overlay */}
+      <div className="fixed inset-0 pointer-events-none z-50 noise-bg" />
+
       {/* Top Navbar specifically tailored for Mobile (NavDock handles Desktop) */}
       <div className="lg:hidden">
         <Navbar />

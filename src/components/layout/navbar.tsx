@@ -1,82 +1,45 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Github, Linkedin } from "lucide-react";
-import { useScrollSpy } from "@/hooks/use-scroll-spy";
+import { Menu, X } from "lucide-react";
 import { siteConfig } from "@/config/site";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { cn } from "@/lib/utils";
+import { motion, AnimatePresence } from "framer-motion";
 
 export function Navbar() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  
-  // Track which section is currently active in the viewport
-  const sectionIds = siteConfig.mainNav.map((item) => item.href.replace("#", ""));
-  const activeSection = useScrollSpy(sectionIds, 150);
+  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 px-4 py-4 pointer-events-none">
-      <div className="max-w-6xl mx-auto flex items-center justify-between pointer-events-auto">
-        
-        {/* Logo */}
-        <Link href="/" className="font-bold text-xl tracking-tighter">
-          Rishabh.
+    <header
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        scrolled ? "glass border-b border-white/5 py-3" : "bg-transparent py-5"
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+        <Link href="/" className="text-xl font-extrabold tracking-tighter hover:opacity-80 transition-opacity">
+          {siteConfig.name}
         </Link>
 
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-1 glass px-6 py-2 rounded-full">
-          {siteConfig.mainNav.map((item) => {
-            const isActive = activeSection === item.href.replace("#", "");
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={cn(
-                  "relative px-4 py-1.5 text-sm font-medium transition-colors",
-                  isActive ? "text-primary" : "text-muted-foreground hover:text-foreground"
-                )}
-              >
-                {item.title}
-                {isActive && (
-                  <motion.div
-                    layoutId="activeNavIndicator"
-                    className="absolute inset-0 bg-primary/10 rounded-full -z-10"
-                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                  />
-                )}
-              </Link>
-            );
-          })}
-        </nav>
-
-        {/* Right Actions */}
-        <div className="hidden md:flex items-center gap-4">
-          <Link href={siteConfig.links.github} target="_blank" className="text-muted-foreground hover:text-foreground transition-colors">
-            <Github className="w-5 h-5" />
-          </Link>
-          <Link href={siteConfig.links.linkedin} target="_blank" className="text-muted-foreground hover:text-foreground transition-colors">
-            <Linkedin className="w-5 h-5" />
-          </Link>
-          <ThemeToggle />
-          <Link 
-            href="/resume.pdf" 
-            target="_blank"
-            className="px-4 py-2 text-sm font-semibold bg-foreground text-background rounded-full hover:bg-foreground/90 transition-transform active:scale-95"
-          >
-            Resume
-          </Link>
-        </div>
-
-        {/* Mobile Menu Toggle */}
-        <div className="md:hidden flex items-center gap-4">
+        {/* Desktop is hidden, handled by NavDock */}
+        
+        <div className="flex items-center gap-4">
           <ThemeToggle />
           <button
-            className="p-2"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            onClick={() => setIsOpen(!isOpen)}
+            className="p-2 rounded-full bg-foreground/5 hover:bg-foreground/10 transition-colors focus:outline-none"
+            aria-label="Toggle menu"
           >
-            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
       </div>

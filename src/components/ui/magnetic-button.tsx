@@ -18,7 +18,7 @@ export function MagneticButton({ children, className, ...props }: MagneticButton
     const { height, width, left, top } = ref.current!.getBoundingClientRect();
     const middleX = clientX - (left + width / 2);
     const middleY = clientY - (top + height / 2);
-    setPosition({ x: middleX * 0.2, y: middleY * 0.2 }); // 0.2 is the pull strength
+    setPosition({ x: middleX * 0.15, y: middleY * 0.15 }); // Softer pull strength
   };
 
   const reset = () => {
@@ -31,7 +31,7 @@ export function MagneticButton({ children, className, ...props }: MagneticButton
       onMouseMove={handleMouse}
       onMouseLeave={reset}
       animate={{ x: position.x, y: position.y }}
-      transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
+      transition={{ type: "spring", stiffness: 200, damping: 20, mass: 0.5 }}
       className={cn(
         "relative overflow-hidden rounded-full transition-colors",
         className
